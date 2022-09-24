@@ -1,0 +1,65 @@
+body{
+    padding: 0;
+    margin: 0;
+    font-family: sans-serif;
+    background-color:#2d2a3d ;
+}
+.score{
+        
+        color:#fff;
+        text-align: center;
+        margin-top: 80px;
+        font-size: larger;
+}
+
+.choose{
+    text-align: center;
+    color:#fff;
+  
+    
+}
+
+.image{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    height: 250px;
+   
+}
+
+.user img ,
+.comp img{
+        width: 80%;
+}
+
+.user-point{
+    margin-left:30px;
+}
+.computer-point{
+    margin-right:30px;
+}
+
+.option{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 30px;
+
+}
+.option button{
+    background: none;
+    color: #fff;
+    border: 1px solid #fff ;
+    padding: 20px 40px;
+    border-radius: 5px;
+    width: 150px;
+    white-space: nowrap;
+    cursor: pointer;
+    outline:none;
+    transition:  0.2s all linear;
+}
+
+.option button:hover{
+        background-color:#6c6b76;
+        border: 1px solid #6c6b76;
+}
