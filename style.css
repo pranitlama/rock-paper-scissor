@@ -32,6 +32,14 @@ body{
 .comp img{
         width: 80%;
 }
+.shakecomp{
+    animation: movecomp 0.8s linear;
+}
+.shakeuser{
+animation: moveuser 0.8s linear;
+}
+
+
 
 .user-point{
     margin-left:30px;
@@ -62,4 +70,41 @@ body{
 .option button:hover{
         background-color:#6c6b76;
         border: 1px solid #6c6b76;
+}
+
+@keyframes movecomp { 
+    0%{
+        transform: rotate(30deg);
+    }
+    25%{
+        transform: rotate(-30deg);
+    }
+    50%{
+        transform: rotate(30deg);
+    }
+    75%{
+        transform: rotate(-30deg);
+    }
+    100%{
+        transform: rotate(0deg);
+    }
+
+}
+@keyframes moveuser {
+    0%{
+        transform: rotate(-30deg);
+    }
+    25%{
+        transform: rotate(30deg);
+    }
+    50%{
+        transform: rotate(-30deg);
+    }
+    75%{
+        transform: rotate(30deg);
+    }
+    100%{
+        transform: rotate(0deg);
+    }
+
 }
