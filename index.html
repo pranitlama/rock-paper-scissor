@@ -25,73 +25,173 @@
             CHOOSE AN OPTION
     </div>
     <div class="option">
-        <button type="button">rock</button>
-        <button type="button">paper</button>
-        <button type="button">scissor</button>
+        <button type="button" id="rock">rock</button>
+        <button type="button" id="paper">paper</button>
+        <button type="button" id="scissor">scissor</button>
+    </div>
+
+    <div class="popup" id="popup">
+        <!-- <h2>YOU WIN!!!!</h2> -->
+        <button type="button" onclick="closepopup()">Play Again</button>
     </div>
     
 </body>
 
 <script>
+    let upoint=0;
+    let cpoint=0;
+    let times;
+    let popup=document.getElementById("popup");
+    let winner=document.querySelector(".choose");
+  
   const computer=document.querySelector(".comp img");   //select element from class .comp img
   const user=document.querySelector(".user img");
   const comppoint=document.querySelector(".computerpoint");
   const userpoint=document.querySelector(".userpoint");
-  const option=document.querySelectorAll(".option button"); //button bhayera all gareko
+  const r=document.getElementById("rock");
+  const p=document.getElementById("paper");
+  const s=document.getElementById("scissor");
 
+
+ clearTimeout(times);
+  function getcomputerchoice(){
+      const choice=["rock", "paper", "scissor"];   //computer ko choice ko lagi
+                let choiceno=Math.floor(Math.random()*3);  //1-3 ma random lincha
+              let computerchoice=choice[choiceno];
+              return choice[choiceno];
+  }
+
+  function shake(){
+    computer.classList.add("shakecomp"); 
+           user.classList.add("shakeuser");
+            times=setTimeout(()=>{
+            computer.classList.remove("shakecomp"); 
+           user.classList.remove("shakeuser");
+           },700);
+  }
   
+  function uchoice(){
+      
+    
 
-  option.forEach(option=>{
-    option.addEventListener("click",()=>{   //jaba click huncha
-            computer.classList.add("shakecomp"); //class garna ko lagi use huncha
-            user.classList.add("shakeuser");
+  r.addEventListener("click",function(){
+    result("rock");
+    shake();
+    
+});
+p.addEventListener("click",function(){
+    result("paper");
+    shake();
+ 
+});
+s.addEventListener("click",function(){
+    result("scissor");
+    shake();
+  
+     
+});
+
+}
+
+function win(){
+    upoint++;
+    userpoint.innerHTML=upoint;
+    comppoint.innerHTML=cpoint;
+    announce();
+}
+
+function lose(){
+    cpoint++;
+    userpoint.innerHTML=upoint;
+    comppoint.innerHTML=cpoint;
+    announce();
+}
+
+
+function announce(){
+    if(upoint==5)
+    {
+        let win=document.createElement('h2');
+        win.textContent="You Win";
+        popup.appendChild(win);
+        openpopup();
+
+    }
+    if(cpoint==5)
+    {
+        let win=document.createElement('h2');
+        win.textContent="You Lose";
+        popup.appendChild(win);
+        openpopup();
+    }
+}
+
+function openpopup(){
+    popup.classList.add("open-popup");
+}
+function closepopup(){
+   
+    popup.classList.remove("open-popup");
+    cpoint=0;
+    upoint=0;
+    userpoint.innerHTML=upoint;
+    comppoint.innerHTML=cpoint;
+
+}
+
+
+function result(userchoice){
+    const computerchoice=getcomputerchoice();
+    user.src="/img"+"/"+userchoice+"user.png";            
+ computer.src="/img"+"/"+computerchoice+"computer.png";
+    if(userchoice=="rock"){
             
 
-            setTimeout(()=>{
-                const choice=["rock", "paper", "scissor"];   //computer ko choice ko lagi
-             let choiceno=Math.floor(Math.random()*3);  //1-3 ma random lincha
-            let computerchoice=choice[choiceno];            //1-3 random value yesma store huncha
-                computer.classList.remove("shakecomp");         //shake class feri hatauna ko lagi
-            user.classList.remove("shakeuser");
-                user.src="/img"+"/"+option.innerHTML+"user.png";        //option ko anusar change huncha img
-           
-              
-                computer.src="/img"+"/"+computerchoice+"computer.png";  // ramdom no anusar array ma bhaneko value liyera img change garcha
-                let cpoint=parseInt(comppoint.innerHTML);   
-                 let upoint=parseInt(userpoint.innerHTML);
+                                if(computerchoice=="paper")
+                                {
+                                   lose();
+                                }
+                                else if(computerchoice=="scissor"){
+                                     win();
+                                }
+                            }
+                            else if(userchoice=="paper")
+                            
+            
+                                {
+                           
+            
+                                    if(computerchoice=="scissor")
+                                {
+                                   lose();
+                                }
+                                else if(computerchoice=="rock"){
+                                    win();
+                                }
+                                }
+                            else{
+                          
+            
+                                    if(computerchoice=="rock")
+                                {
+                                   lose();
+                                }
+                                else if(computerchoice=="paper"){
+                                   win();
+                                }
+                                }
+}
 
 
-                if(option.innerHTML=="rock"){
-                    if(computerchoice=="paper")
-                    {
-                        comppoint.innerHTML=cpoint+1;
-                    }
-                    else if(computerchoice=="scissor"){
-                            userpoint.innerHTML=upoint+1;
-                    }
-                }
-                else if(option.innerHTML=="paper")
-                    {
-                        if(computerchoice=="scissor")
-                    {
-                        comppoint.innerHTML=cpoint+1;
-                    }
-                    else if(computerchoice=="rock"){
-                            userpoint.innerHTML=upoint+1;
-                    }
-                    }
-                else{
-                        if(computerchoice=="rock")
-                    {
-                        comppoint.innerHTML=cpoint+1;
-                    }
-                    else if(computerchoice=="paper"){
-                            userpoint.innerHTML=upoint+1;
-                    }
-                    }
-                
-            },800);
-    });
-  });
+
+
+window.onload=uchoice();
+
+
+
+
+
+
+
 </script>
 </html>
