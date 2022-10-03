@@ -31,7 +31,7 @@
     </div>
 
     <div class="popup" id="popup">
-        <!-- <h2>YOU WIN!!!!</h2> -->
+        <h2 id="result"></h2>
         <button type="button" onclick="closepopup()">Play Again</button>
     </div>
     
@@ -43,6 +43,7 @@
     let times;
     let popup=document.getElementById("popup");
     let winner=document.querySelector(".choose");
+    let anou=document.getElementById("result");
   
   const computer=document.querySelector(".comp img");   //select element from class .comp img
   const user=document.querySelector(".user img");
@@ -111,19 +112,17 @@ function lose(){
 function announce(){
     if(upoint==5)
     {
-        let win=document.createElement('h2');
-        win.textContent="You Win";
-        popup.appendChild(win);
+       
+        anou.innerHTML="You Win!!";
         openpopup();
 
     }
     if(cpoint==5)
     {
-        let win=document.createElement('h2');
-        win.textContent="You Lose";
-        popup.appendChild(win);
+        anou.innerHTML="You Lose!!";
         openpopup();
     }
+   
 }
 
 function openpopup(){
@@ -136,6 +135,9 @@ function closepopup(){
     upoint=0;
     userpoint.innerHTML=upoint;
     comppoint.innerHTML=cpoint;
+    user.src="/img/rockuser.png";            
+ computer.src="/img/rockcomputer.png";
+  
 
 }
 
@@ -182,16 +184,6 @@ function result(userchoice){
                                 }
 }
 
-
-
-
 window.onload=uchoice();
-
-
-
-
-
-
-
 </script>
 </html>
